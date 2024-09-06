@@ -1,0 +1,21 @@
+h2 #{verse.emotion}
+
+p #[strong Emotion:] #{verse.emotion}
+p #[strong Scripture:] #{verse.scripture}
+
+div.actions
+  form(method='POST', action=`/delete/${verse.id}?_method=DELETE`)
+    button(
+      type='submit',
+      hx-delete=`/delete/${verse.id}`,
+      hx-target='#sidebar',
+      hx-push-url='/verses'
+      class='link'
+    ) Delete Emotion
+
+  a(
+    href=`/verses/${verse.id}/edit`,
+    hx-get=`/verses/${verse.id}/edit`,
+    hx-push-url='true',
+    hx-target='#content'
+  ) Edit Emotion 

@@ -1,0 +1,17 @@
+ul.verse-list
+  each verse in verses
+    li
+      a(
+        href=`/verses/${verse.id}`,
+        hx-get=`/verses/${verse.id}`,
+        hx-target='#content',
+        hx-push-url='true'
+      )= verse.emotion 
+
+div.actions
+  a(
+    href='/verses/new',
+    hx-get='/verses/new',
+    hx-target='#content',
+    hx-push-url='true'
+  ) New Emotion 

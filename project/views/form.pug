@@ -1,0 +1,22 @@
+- isEditing = () => !(Object.keys(verse).length === 0);
+
+h2=isEditing() ? "Edit verse" : "New verse"
+
+form(
+  action=isEditing() ? `/update/${verse.id}?_method=PUT` : '/verses',
+  method='POST',
+
+  hx-post=isEditing() ? false : '/verses',
+  hx-put=isEditing() ? `/update/${verse.id}` : false,
+  hx-target='#sidebar',
+  hx-push-url=isEditing() ? `/verses/${verse.id}` : false
+  hx-on::after-request='if(event.detail.successful) this.reset()',
+)
+  label(for='emotion') Emotion:
+  input#emotion(type='text', name='emotion', required, value=verse.emotion)
+
+  label(for='scripture' ) Scripture:
+  input#scripture(type='text', name='scripture', required, value=verse.scripture)
+
+  div.actions
+    button(type='submit') Submit
